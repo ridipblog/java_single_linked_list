@@ -2,8 +2,7 @@ package single_list;
 
 import java.util.Scanner;
 
-class single_list_1
-{
+public class single_list_deletion {
 	static class Node
 	{
 		int data;
@@ -79,6 +78,65 @@ class single_list_1
 			n=sc.nextInt();
 		}while(n==1);
 	}
+	public void deletAtStart()
+	{
+		Node temp=head;
+		if(head==null)
+		{
+			System.out.print("List Null ");
+		}
+		else
+		{
+			head=temp.next;
+		}
+	}
+	public void deleteAtEnd()
+	{
+		if(head==null)
+		{
+			System.out.print("List Null ");
+		}
+		else
+		{
+			if(head.next==null)
+			{
+				deletAtStart();
+			}
+			else
+			{
+				Node temp=head;
+				Node prev=temp.next;
+				while(prev.next!=null)
+				{
+					temp=prev;
+					prev=prev.next;
+				}
+				temp.next=null;
+			}
+		}
+	}
+	public void deleteAtIndex()
+	{
+		Node temp=head;
+		Node prev=null;
+		int index,length=0;
+		System.out.print("Enter Index ");
+		index=sc.nextInt();
+		if(index==1)
+		{
+			deletAtStart();
+		}
+		else
+		{
+			while(length!=index-1)
+			{
+				prev=temp;
+				temp=temp.next;
+				length++;
+			}
+			prev.next=temp.next;
+		}
+	}
 	public void traversal()
 	{
 		if(head==null)
@@ -97,7 +155,7 @@ class single_list_1
 	}
 	public static void main(String args[])
 	{
-		single_list_1 sl=new single_list_1();
+		single_list_deletion sl=new single_list_deletion();
 		sl.creation();
 		int c;
 		while(true)
@@ -106,6 +164,9 @@ class single_list_1
 			System.out.print("\nChoose 2 For Insert At End ");
 			System.out.print("\nChoose 3 For Insert At Index ");
 			System.out.print("\nChoose 4 For Display Data ");
+			System.out.print("\nChoose 5 For Delete At Start ");
+			System.out.print("\nChoose 6 For Delete At End ");
+			System.out.print("\nChoose 7 For Delete At Index ");
 			Scanner sc=new Scanner(System.in);
 			c=sc.nextInt();
 			if(c==1)
@@ -123,6 +184,18 @@ class single_list_1
 			else if(c==4)
 			{
 				sl.traversal();
+			}
+			else if(c==5)
+			{
+				sl.deletAtStart();
+			}
+			else if(c==6)
+			{
+				sl.deleteAtEnd();
+			}
+			else if(c==7)
+			{
+				sl.deleteAtIndex();
 			}
 			else
 			{
